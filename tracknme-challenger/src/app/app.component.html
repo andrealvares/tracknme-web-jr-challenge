@@ -1,0 +1,14 @@
+<button (click)="getDirection()">Get Directions</button>
+<agm-map [latitude]="lat" [longitude]="lng">
+  <agm-direction [renderOptions]="renderOptions" [markerOptions]="markerOptions" [origin]="origin" [destination]="destination">
+  </agm-direction>
+</agm-map>
+
+<input type="date" [(ngModel)]="data" /> <button (click)="getPosicoesByDate(data)">Consultar</button>
+
+<button (click)="getPosicoes()">Obter Posições</button>
+<agm-map [latitude]="lat" [longitude]="lng" *ngIf="destinos!=null">
+    <agm-direction *ngFor="let destino of destinos" [renderOptions]="renderOptions" [markerOptions]="markerOptions" [origin]="destino.origem"
+      [destination]="destino.destino">
+    </agm-direction>
+</agm-map>
