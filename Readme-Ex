@@ -1,0 +1,27 @@
+PAra o funcionamento da API os comandos abaixo são necessários dentro da pasta da apicoord
+instalação do framework adonis para trabalhar com o nodejs
+npm i -g @adonisjs/cli
+instalação de pacotes necessários
+npm install
+inicialização do servidor de teste.
+adonis serve --dev
+
+
+Exemplo de uso:
+Um GET junto com o endereço http://127.0.0.1:3333/coords
+faz o retorno de todos os dados.
+
+Um GET com http://127.0.0.1:3333/coords?date=2018-11-12
+faz o retorno de acordo com os parâmetros indiciados.
+
+Um POST com http://127.0.0.1:3333/coords
+faz o cadastro de nova coordenada com os parâmetros obrigatórios:
+latitude,dateTime e longitude.
+
+Um DELETE com http://127.0.0.1:3333/coords/{id}
+apaga um registro, lembrando que o {id} é substítuido como id (código) da informação que se deseja apagar.
+
+EStrutura do json
+
+id,latitude,longitude, dateTime.
+
