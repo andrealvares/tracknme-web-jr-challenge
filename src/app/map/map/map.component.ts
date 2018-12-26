@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { MapService } from '../services/map.service';
-import { ICoordinates } from '../interfaces/Coordinates';
+import { MapService } from '../../services/map.service';
+import { ICoordinates } from '../../interfaces/Coordinates';
 
 @Component({
   selector: 'app-map',
