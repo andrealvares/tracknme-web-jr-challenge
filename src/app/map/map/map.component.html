@@ -1,0 +1,11 @@
+<agm-map *ngIf="coordinates.length > 0" [latitude]="marker.latitude" [longitude]="marker.longitude" [zoom]="12">
+  <agm-marker [latitude]="marker.latitude" [longitude]="marker.longitude" [iconUrl]="icon"></agm-marker>
+  <agm-polyline [visible]="true" [strokeWeight]="3" strokeColor="blue">
+    <agm-polyline-point
+      *ngFor="let coordinate of coordinates; let i = index"
+      [latitude]="coordinate.latitude"
+      [longitude]="coordinate.longitude"
+    >
+    </agm-polyline-point>
+  </agm-polyline>
+</agm-map>
