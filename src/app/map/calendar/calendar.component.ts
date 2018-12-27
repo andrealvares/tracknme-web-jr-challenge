@@ -2,6 +2,7 @@ import { Component, OnInit, OnChanges, ViewEncapsulation } from '@angular/core';
 import { ICoordinates } from 'src/app/interfaces/Coordinates';
 import { MapService } from 'src/app/services/map.service';
 import { Moment } from 'moment';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-calendar',
@@ -14,6 +15,7 @@ export class CalendarComponent implements OnInit, OnChanges {
   public coordinates: ICoordinates[];
   public initialMarker: ICoordinates;
   public finalMarker: ICoordinates;
+  public dateFormater: Moment;
   public icons: { initial: Object; final: Object } = {
     initial: {
       url: './assets/images/green_pin.svg',
@@ -44,5 +46,10 @@ export class CalendarComponent implements OnInit, OnChanges {
       this.finalMarker = res[0];
       this.coordinates = res;
     });
+  }
+
+  formatHour(date: string) {
+    const formatedDate = moment(date).format('HH:mm');
+    return formatedDate;
   }
 }

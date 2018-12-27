@@ -12,23 +12,24 @@
 <ng-container *ngIf="coordinates">
   <h4 *ngIf="date">Trajeto do dia {{ date.format('DD/MM/YYYY') }}</h4>
   <agm-map [latitude]="finalMarker.latitude" [longitude]="finalMarker.longitude" [zoom]="12">
-    <agm-marker
-      [latitude]="initialMarker.latitude"
-      [longitude]="initialMarker.longitude"
-      [iconUrl]="icons.initial"
-    ></agm-marker>
+    <agm-marker [latitude]="initialMarker.latitude" [longitude]="initialMarker.longitude" [iconUrl]="icons.initial">
+      <agm-info-window [disableAutoPan]="true" [isOpen]="true">
+        Hora de saída : <strong>{{ formatHour(initialMarker.dateTime) }}</strong>
+      </agm-info-window>
+    </agm-marker>
     <agm-polyline [visible]="true" [strokeWeight]="3" strokeColor="blue">
       <agm-polyline-point
         *ngFor="let coordinate of coordinates; let i = index"
         [latitude]="coordinate.latitude"
         [longitude]="coordinate.longitude"
+        (mouseOver)="mouseOver($event)"
       >
       </agm-polyline-point>
     </agm-polyline>
-    <agm-marker
-      [latitude]="finalMarker.latitude"
-      [longitude]="finalMarker.longitude"
-      [iconUrl]="icons.final"
-    ></agm-marker>
+    <agm-marker [latitude]="finalMarker.latitude" [longitude]="finalMarker.longitude" [iconUrl]="icons.final">
+      <agm-info-window [disableAutoPan]="true" [isOpen]="true">
+        Hora de chegada : <strong>{{ formatHour(finalMarker.dateTime) }}</strong>
+      </agm-info-window>
+    </agm-marker>
   </agm-map>
 </ng-container>
