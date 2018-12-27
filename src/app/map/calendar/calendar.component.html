@@ -1,5 +1,34 @@
 <mat-form-field>
-  <input matInput [matDatepicker]="picker" placeholder="Choose a date" />
+  <input
+    matInput
+    [matDatepicker]="picker"
+    [(ngModel)]="date"
+    (ngModelChange)="dateChanged($event)"
+    placeholder="Escolha uma data"
+  />
   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
   <mat-datepicker #picker></mat-datepicker>
 </mat-form-field>
+<ng-container *ngIf="coordinates">
+  <h4 *ngIf="date">Trajeto do dia {{ date.format('DD/MM/YYYY') }}</h4>
+  <agm-map [latitude]="finalMarker.latitude" [longitude]="finalMarker.longitude" [zoom]="12">
+    <agm-marker
+      [latitude]="initialMarker.latitude"
+      [longitude]="initialMarker.longitude"
+      [iconUrl]="icons.initial"
+    ></agm-marker>
+    <agm-polyline [visible]="true" [strokeWeight]="3" strokeColor="blue">
+      <agm-polyline-point
+        *ngFor="let coordinate of coordinates; let i = index"
+        [latitude]="coordinate.latitude"
+        [longitude]="coordinate.longitude"
+      >
+      </agm-polyline-point>
+    </agm-polyline>
+    <agm-marker
+      [latitude]="finalMarker.latitude"
+      [longitude]="finalMarker.longitude"
+      [iconUrl]="icons.final"
+    ></agm-marker>
+  </agm-map>
+</ng-container>

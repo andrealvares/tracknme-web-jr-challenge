@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { AgmCoreModule } from '@agm/core';
-import { MatFormFieldModule, MatDatepickerModule } from '@angular/material';
+import { MatFormFieldModule, MatInputModule, MatDatepickerModule, MAT_DATE_LOCALE } from '@angular/material';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { MapComponent } from './map/map.component';
 import { CalendarComponent } from './calendar/calendar.component';
@@ -28,12 +29,13 @@ const routes: Routes = [
   imports: [
     RouterModule.forChild(routes),
     CommonModule,
-
+    FormsModule,
     MatFormFieldModule,
+    MatInputModule,
     MatDatepickerModule,
     MatMomentDateModule,
     AgmCoreModule.forRoot({ apiKey: 'AIzaSyBDAx01EDZ1OSP8qzpLVJNEbkX6bFEkJfs' })
   ],
-  providers: [MapService, MatMomentDateModule]
+  providers: [MapService, { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' }, MatMomentDateModule]
 })
 export class MapModule {}
