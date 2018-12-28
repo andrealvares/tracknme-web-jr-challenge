@@ -1,0 +1,43 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+/challenge/dist
+/challenge/tmp
+/challenge/out-tsc
+
+# dependencies
+/challenge/node_modules
+
+# profiling files
+/challenge/chrome-profiler-events.json
+/challenge/speed-measure-plugin.json
+
+# IDEs and editors
+/challenge/.idea
+/challenge/.project
+/challenge/.classpath
+/challenge/.c9/
+/challenge/*.launch
+/challenge/.settings/
+/challenge/*.sublime-workspace
+
+# IDE - VSCode
+/challenge/.vscode/*
+/challenge/!.vscode/settings.json
+/challenge/!.vscode/tasks.json
+/challenge/!.vscode/launch.json
+/challenge/!.vscode/extensions.json
+
+# misc
+/challenge/.sass-cache
+/challenge/connect.lock
+/challenge/coverage
+/challenge/libpeerconnection.log
+/challenge/npm-debug.log
+/challenge/yarn-error.log
+/challenge/testem.log
+/challenge/typings
+
+# System Files
+/challenge/.DS_Store
+/challenge/Thumbs.db
