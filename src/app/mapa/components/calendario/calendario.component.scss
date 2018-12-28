@@ -1,0 +1,35 @@
+.content {
+  padding: 50px;
+}
+
+agm-map {
+  height: 75vh;
+  width: 75vw;
+  margin: 0 auto !important;
+  box-shadow: 0 0 10px 0 rgba(0,0,0,.35);
+}
+
+.data {
+  padding: 10px 30px;
+  margin: 0 auto;
+  text-align: center;
+
+  .title {
+    font-size: 15px;
+    font-weight: normal;
+    margin: 0;
+  }
+
+  .obs {
+    font-size: 10px;
+  }
+
+  mat-form-field {
+    margin-top: 16px;
+  }
+}
+
+
+
+
+

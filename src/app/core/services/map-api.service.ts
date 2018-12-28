@@ -38,13 +38,16 @@ export class MapApiService {
                         resolve(res);
 
                     }, err => {
-
                         console.log(err);
                         reject(err);
 
                     }
                 );
         });
+
+    }
+
+    public getHistory() {
 
     }
 

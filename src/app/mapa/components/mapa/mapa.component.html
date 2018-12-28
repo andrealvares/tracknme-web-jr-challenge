@@ -7,7 +7,7 @@
       </agm-info-window>
     </agm-marker>
 
-    <agm-polyline [visible]="true" [strokeWeight]="3" strokeColor="blue">
+    <agm-polyline [strokeWeight]="4" strokeColor="purple">
 
       <agm-polyline-point *ngFor="let position of routes" [latitude]="position.latitude" [longitude]="position.longitude"></agm-polyline-point>
 
