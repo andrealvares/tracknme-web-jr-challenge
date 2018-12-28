@@ -41,3 +41,6 @@
 # System Files
 /challenge/.DS_Store
 /challenge/Thumbs.db
+
+#ignore env files
+/challenge/src/environments/environment.ts
