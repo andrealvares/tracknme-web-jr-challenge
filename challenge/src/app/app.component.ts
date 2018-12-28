@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { RequestService } from './request.service';
+import { promise } from 'protractor';
 
 @Component({
   selector: 'app-root',
@@ -11,18 +13,50 @@ export class AppComponent {
   public lat: Number = -15.8614942;
   public lng: Number = -48.0313622;
 
-  public origin: any;
-  public destination: any;
+  public origin: any = { lat: -15.8614942, lng: -48.0313622 };
+  public destination: any = { lat: -15.8614942, lng: -48.0313622 };
+
+  constructor(
+    private requestService:RequestService
+  ) {}
+
+  setLocalStorage(positions, positionLen) {
+    return new Promise((resolve) => {
+      positions.map((position, i) => {
+        localStorage.setItem(`position${i}Lat`, position.latitude);
+        localStorage.setItem(`position${i}Lng`, position.longitude);
+        if(i === (positionLen - 1)) {
+          resolve();
+        }
+      });
+    });
+  }
+
+  getLocalStorage(positions) {
+    let origin = true;
+    positions.map((position, i) => {
+      const lat = parseFloat(localStorage.getItem(`position${i}Lat`));
+      const lng = parseFloat(localStorage.getItem(`position${i}Lng`));
+      const positionTarget = {lat, lng};
+      if(origin) this.origin = positionTarget;
+      if(!origin) this.destination = positionTarget;
+      origin = false;
+    });
+  }
 
   ngOnInit() {
-    this.getDirection();
+    this.requestService.getPositions()
+      .subscribe((positions: any) => {
+        const positionLen: Number = positions.length;
+        this.setLocalStorage(positions, positionLen)
+          .then(() => {
+            this.getLocalStorage(positions);
+          });
+      });
   }
 
   getDirection() {
-    console.log('entra aqui')
-    this.origin = { lat: -15.8614942, lng: -48.0313622 };
-    this.destination = { lat: -15.8614948, lng: -48.0313630 };
-    // this.origin = 'Brasilia';
-    // this.destination = 'goiania';
+    this.origin = this.origin;
+    this.destination = this.destination;
   }
 }
