@@ -1,0 +1,17 @@
+<div class="content" style="margin: 0 auto !important; display: flex">
+  <agm-map (mapReady)="mapReady()" *ngIf="routes.length" [latitude]="routes[0].latitude" [longitude]="routes[0].longitude" [zoom]="13">
+
+    <agm-marker *ngFor="let position of routes; let i = index" [latitude]="position.latitude" [longitude]="position.longitude" [iconUrl]="icons[i]" [animation]="animation">
+      <agm-info-window>
+        Você esteve aqui há {{ formatHour(position.dateTime) }}.
+      </agm-info-window>
+    </agm-marker>
+
+    <agm-polyline [visible]="true" [strokeWeight]="3" strokeColor="blue">
+
+      <agm-polyline-point *ngFor="let position of routes" [latitude]="position.latitude" [longitude]="position.longitude"></agm-polyline-point>
+
+    </agm-polyline>
+
+  </agm-map>
+</div>
