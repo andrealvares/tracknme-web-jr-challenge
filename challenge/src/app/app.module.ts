@@ -4,7 +4,9 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { AgmCoreModule } from '@agm/core';
+import { AgmCoreModule } from '@agm/core'; 
+import { AgmDirectionModule } from 'agm-direction';
+
 import {environment} from '../environments/environment';
 
 @NgModule({
@@ -16,7 +18,8 @@ import {environment} from '../environments/environment';
     AppRoutingModule,
     AgmCoreModule.forRoot({
       apiKey: environment.apiKey
-    })
+    }),
+    AgmDirectionModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
