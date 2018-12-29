@@ -62,6 +62,10 @@ export class AppComponent {
 
   changeDate(e) {
     const date = this.convertDate(e.value);
+    this.checkLocalStorage(date);
+  }
+
+  checkLocalStorage(date) {
     if(localStorage.getItem(`position${date}`)) {
       this.getLocalStorage(date);
     }else{
@@ -70,7 +74,8 @@ export class AppComponent {
   }
 
   ngOnInit() {
-    this.getPosition(new Date());
+    const date = this.convertDate(new Date());
+    this.checkLocalStorage(date);
   }
 
   getDirection() {
