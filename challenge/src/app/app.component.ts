@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RequestService } from './request.service';
 import { promise } from 'protractor';
+import { stringify } from '@angular/core/src/util';
 
 @Component({
   selector: 'app-root',
@@ -20,38 +21,34 @@ export class AppComponent {
     private requestService:RequestService
   ) {}
 
-  setLocalStorage(positions, positionLen) {
-    return new Promise((resolve) => {
-      positions.map((position, i) => {
-        localStorage.setItem(`position${i}Lat`, position.latitude);
-        localStorage.setItem(`position${i}Lng`, position.longitude);
-        if(i === (positionLen - 1)) {
-          resolve();
-        }
-      });
-    });
+  setLocalStorage(positions) {
+    const data = this.convertDate(new Date(positions[0].dateTime));
+    localStorage.setItem(`position${data}`, JSON.stringify([{
+      lat: positions[0].latitude,
+      lng: positions[0].longitude,
+      dateTime: positions[0].dateTime
+    },{
+      lat: positions[1].latitude,
+      lng: positions[1].longitude,
+      dateTime: positions[1].dateTime
+    }]));
   }
 
-  getLocalStorage(positions) {
-    let origin = true;
-    positions.map((position, i) => {
-      const lat = parseFloat(localStorage.getItem(`position${i}Lat`));
-      const lng = parseFloat(localStorage.getItem(`position${i}Lng`));
-      const positionTarget = {lat, lng};
-      if(origin) this.origin = positionTarget;
-      if(!origin) this.destination = positionTarget;
-      origin = false;
-    });
+  getLocalStorage(date) {
+    const positionStorage = JSON.parse(localStorage.getItem(`position${date}`));
+    const latOrigin = parseFloat(positionStorage[0].lat);
+    const lngOrigin = parseFloat(positionStorage[0].lng);
+    const latDest = parseFloat(positionStorage[1].lat);
+    const lngDest = parseFloat(positionStorage[1].lng);
+    this.origin = {lat: latOrigin, lng: lngOrigin};
+    this.destination = {lat: latDest, lng: lngDest};
   }
 
   getPosition(date){
     this.requestService.getPositions(date)
       .subscribe((positions: any) => {
-        const positionLen: Number = positions.length;
-        this.setLocalStorage(positions, positionLen)
-          .then(() => {
-            this.getLocalStorage(positions);
-          });
+        this.setLocalStorage(positions);
+        this.getLocalStorage(date);
       });
   }
 
@@ -65,7 +62,11 @@ export class AppComponent {
 
   changeDate(e) {
     const date = this.convertDate(e.value);
-    this.getPosition(date);
+    if(localStorage.getItem(`position${date}`)) {
+      this.getLocalStorage(date);
+    }else{
+      this.getPosition(date);
+    }
   }
 
   ngOnInit() {
