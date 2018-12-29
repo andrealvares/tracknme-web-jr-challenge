@@ -44,8 +44,8 @@ export class AppComponent {
     });
   }
 
-  ngOnInit() {
-    this.requestService.getPositions()
+  getPosition(date){
+    this.requestService.getPositions(date)
       .subscribe((positions: any) => {
         const positionLen: Number = positions.length;
         this.setLocalStorage(positions, positionLen)
@@ -53,6 +53,23 @@ export class AppComponent {
             this.getLocalStorage(positions);
           });
       });
+  }
+
+  convertDate(date) {
+    const day: String = date.getDate().toString().length > 1 ? date.getDate().toString() : `0${date.getDate().toString()}`;
+    const month: String = date.getMonth().toString().length > 1 ? (date.getMonth() + 1).toString() : '0' + (date.getMonth() + 1).toString();
+    const year: String = date.getFullYear().toString();
+    const newDate: String = `${year}-${month}-${day}`;
+    return newDate;
+  }
+
+  changeDate(e) {
+    const date = this.convertDate(e.value);
+    this.getPosition(date);
+  }
+
+  ngOnInit() {
+    this.getPosition(new Date());
   }
 
   getDirection() {

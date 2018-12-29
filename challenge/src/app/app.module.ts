@@ -9,6 +9,8 @@ import { AgmCoreModule } from '@agm/core';
 import { AgmDirectionModule } from 'agm-direction';
 
 import {environment} from '../environments/environment';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatNativeDateModule, MatDatepickerModule, MatInputModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,10 @@ import {environment} from '../environments/environment';
       apiKey: environment.apiKey
     }),
     AgmDirectionModule,
+    BrowserAnimationsModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

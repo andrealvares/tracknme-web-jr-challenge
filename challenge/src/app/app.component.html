@@ -5,6 +5,13 @@
   </h1>
 </div>
 
+<mat-form-field>
+  <input matInput [matDatepicker]="picker" (dateChange)="changeDate($event)" placeholder="Escolha uma data">
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+
+
 <agm-map [latitude]="lat" [longitude]="lng">
   <agm-direction [origin]="origin" [destination]="destination">
   </agm-direction>
