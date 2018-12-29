@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { MapApiService } from '../../../core/services/map-api.service';
 import { Position } from '../../../core/interfaces/Position';
 import * as moment from 'moment';
-import {HttpErrorResponse} from '@angular/common/http';
 
 @Component({
   selector: 'app-mapa',
@@ -12,7 +11,7 @@ import {HttpErrorResponse} from '@angular/common/http';
 })
 export class MapaComponent implements OnInit {
 
-  routes: Position[] = [];
+  positions: Position[] = [];
   icons = ['../../../assets/images/maps-and-flags-start.png', '../../../assets/images/maps-and-flags-end.png'];
   animation: any;
 
@@ -22,12 +21,12 @@ export class MapaComponent implements OnInit {
 
   ngOnInit() {
     this.mapApiService.getRoutes().then(res => {
-      this.routes = res;
+      this.positions = res;
     });
   }
 
   formatHour(dateTime) {
-    return moment(dateTime).locale('pt').startOf('day').fromNow();
+    return moment(dateTime).startOf('day').fromNow();
   }
 
   mapReady() {

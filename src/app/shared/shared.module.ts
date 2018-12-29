@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
+import { MatButtonModule } from '@angular/material/button';
 import {
   MatDatepickerModule,
   MatFormFieldModule,
   MatInputModule,
-  MatNativeDateModule,
+  MatNativeDateModule, MatProgressSpinnerModule,
 } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -21,11 +22,14 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    MatButtonModule,
     MatDatepickerModule,
     MatFormFieldModule,
     MatInputModule,
     MatNativeDateModule,
-    ReactiveFormsModule
+    MatProgressSpinnerModule,
+    ReactiveFormsModule,
+
   ],
   providers: [
     MatDatepickerModule

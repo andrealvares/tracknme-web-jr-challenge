@@ -1,7 +1,7 @@
-<div class="content" style="margin: 0 auto !important; display: flex">
-  <agm-map (mapReady)="mapReady()" *ngIf="routes.length" [latitude]="routes[0].latitude" [longitude]="routes[0].longitude" [zoom]="13">
+<div class="content">
+  <agm-map (mapReady)="mapReady()" *ngIf="positions.length" [latitude]="positions[0].latitude" [longitude]="positions[0].longitude" [zoom]="13">
 
-    <agm-marker *ngFor="let position of routes; let i = index" [latitude]="position.latitude" [longitude]="position.longitude" [iconUrl]="icons[i]" [animation]="animation">
+    <agm-marker *ngFor="let position of positions; let i = index" [latitude]="position.latitude" [longitude]="position.longitude" [iconUrl]="icons[i]" [animation]="animation">
       <agm-info-window>
         Você esteve aqui há {{ formatHour(position.dateTime) }}.
       </agm-info-window>
@@ -9,7 +9,7 @@
 
     <agm-polyline [strokeWeight]="4" strokeColor="purple">
 
-      <agm-polyline-point *ngFor="let position of routes" [latitude]="position.latitude" [longitude]="position.longitude"></agm-polyline-point>
+      <agm-polyline-point *ngFor="let position of positions" [latitude]="position.latitude" [longitude]="position.longitude"></agm-polyline-point>
 
     </agm-polyline>
 

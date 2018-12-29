@@ -1,5 +1,7 @@
 .content {
-  padding: 50px;
+  padding: 50px 0 50px 50px;
+  margin: 0 auto;
+  display: flex;
 }
 
 agm-map {
@@ -7,6 +9,12 @@ agm-map {
   width: 75vw;
   margin: 0 auto !important;
   box-shadow: 0 0 10px 0 rgba(0,0,0,.35);
+  display: flex;
+  align-items: center;
+}
+
+.form {
+  width: 25vw;
 }
 
 .data {
@@ -29,6 +37,24 @@ agm-map {
   }
 }
 
+.error {
+  font-size: 12px;
+  text-align: center;
+  color: #7d0000;
+}
+
+.spinner {
+  margin-left: auto;
+  padding-right: 5px;
+}
+.all-markers {
+  text-align:  center;
+}
+::ng-deep {
+  .mat-form-field-infix {
+    display: flex !important;
+  }
+}
 
 
 

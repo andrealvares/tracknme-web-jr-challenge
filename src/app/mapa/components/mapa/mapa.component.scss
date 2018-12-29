@@ -1,5 +1,7 @@
 .content {
   padding: 50px;
+  margin: 0 auto;
+  display: flex;
 }
 
 agm-map {
@@ -7,11 +9,6 @@ agm-map {
   width: 75vw;
   margin: 0 auto !important;
   box-shadow: 0 0 10px 0 rgba(0,0,0,.35);
-}
-
-.data {
-  padding: 20px 30px;
-  margin: 0 auto;
 }
 
 

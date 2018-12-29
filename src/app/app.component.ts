@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 
 import { MapApiService } from './core/services/map-api.service';
+import { NavigationEnd, Router} from '@angular/router';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-root',
@@ -10,11 +12,20 @@ import { MapApiService } from './core/services/map-api.service';
 
 export class AppComponent {
   title = 'Track\'nMe';
-  activeLink = 'mapa';
+  activeLink = '';
 
   constructor(
-      private mapApiService: MapApiService
+      private mapApiService: MapApiService,
+      public router: Router
   ) {
     mapApiService.init();
+
+    moment.locale('pt');
+
+    router.events.subscribe((event: NavigationEnd) => {
+      if (event instanceof NavigationEnd) {
+        this.activeLink = event.url;
+      }
+    });
   }
 }

@@ -3,8 +3,8 @@
     <span [routerLink]="['/mapa']" class="title">{{ title }}</span>
 
     <nav mat-tab-nav-bar class="actions" backgroundColor="primary">
-        <a mat-tab-link  (click)="activeLink = 'mapa'" [active]="activeLink == 'mapa'" [routerLink]="['/mapa']">Trajeto</a>
-        <a mat-tab-link  (click)="activeLink = 'calendario'" [active]="activeLink == 'calendario'" [routerLink]="['/calendario']">Calendário</a>
+        <a mat-tab-link [active]="activeLink == '/mapa'" [routerLink]="['/mapa']">Trajeto</a>
+        <a mat-tab-link [active]="activeLink == '/calendario'" [routerLink]="['/calendario']">Calendário</a>
     </nav>
 
 </mat-toolbar>

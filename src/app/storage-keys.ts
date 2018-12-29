@@ -1,4 +1,4 @@
 export class StorageKeys {
-    static TRAJETORIO = 'trajetorio_posicoes';
-    static CALENDARIO = 'calendario_posicoes';
+    static ROUTE = 'trajetorio_posicoes';
+    static CALENDAR = 'calendario_posicoes';
 }

@@ -1,28 +1,41 @@
-<div class="content" style="margin: 0 auto !important; display: flex">
-    <agm-map (mapReady)="mapReady()" *ngIf="routes.length" [latitude]="routes[0].latitude" [longitude]="routes[0].longitude" [zoom]="13">
-
-        <agm-marker *ngFor="let position of routes; let i = index" [latitude]="position.latitude" [longitude]="position.longitude" [animation]="animation">
-            <agm-info-window>
-                <!--Você esteve aqui há {{ formatHour(position.dateTime) }}.-->
-            </agm-info-window>
-        </agm-marker>
+<div class="content">
+    <agm-map [longitude]="mapConfig.longitude" [latitude]="mapConfig.latitude" [zoom]="mapConfig.zoom">
 
         <agm-polyline [strokeWeight]="4" strokeColor="purple">
 
-            <agm-polyline-point *ngFor="let position of routes" [latitude]="position.latitude" [longitude]="position.longitude"></agm-polyline-point>
+            <agm-polyline-point *ngFor="let position of positions" [latitude]="position.latitude" [longitude]="position.longitude"></agm-polyline-point>
 
         </agm-polyline>
+
+        <agm-marker *ngFor="let marker of markers" (markerClick)="onMouseOpen(marker, 'click')" (mouseOver)="onMouseOpen(marker, 'hover')" (mouseOut)="onMouseClose(marker, 'hover')" [latitude]="marker.latitude" [longitude]="marker.longitude" [iconUrl]="marker.icon">
+            <agm-info-window (infoWindowClose)="onMouseClose(marker, 'click')">
+                Você esteve aqui em {{ formatHour(marker.dateTime) }}.
+            </agm-info-window>
+        </agm-marker>
 
     </agm-map>
 
 
+    <div class="form">
         <div class="data">
             <h5 class="title">Veja por onde você passou:</h5>
-            <span class="obs">Sugiro dia <b>12/10/2017</b></span>
+            <div class="obs">Datas com histórico: <b>12/10/2017</b> e <b>25/12/2018</b></div>
+
             <mat-form-field>
                 <input matInput [formControl]="date" [matDatepicker]="picker" placeholder="Selecione uma data">
-                <mat-datepicker-toggle  matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker-toggle  *ngIf="!status.isLoading" matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-spinner *ngIf="status.isLoading" diameter="20" strokeWidth="2" class="spinner"></mat-spinner>
                 <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
         </div>
+
+        <div *ngIf="status.error.length" class="error">
+            {{status.error}}
+        </div>
+
+        <div class="all-markers">
+            <button *ngIf="positions.length > 2" mat-stroked-button color="primary" (click)="configMarker(true)">Mostrar todos os pontos</button>
+        </div>
+    </div>
+
 </div>
