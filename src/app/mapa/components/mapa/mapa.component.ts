@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 
 import { MapApiService } from '../../../core/services/map-api.service';
 import { Position } from '../../../core/interfaces/Position';
@@ -7,7 +7,8 @@ import * as moment from 'moment';
 @Component({
   selector: 'app-mapa',
   templateUrl: './mapa.component.html',
-  styleUrls: ['./mapa.component.scss']
+  styleUrls: ['./mapa.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MapaComponent implements OnInit {
 
@@ -16,12 +17,14 @@ export class MapaComponent implements OnInit {
   animation: any;
 
   constructor(
-      private mapApiService: MapApiService
+      private mapApiService: MapApiService,
+      private changeDetectorRef: ChangeDetectorRef
   ) { }
 
   ngOnInit() {
     this.mapApiService.getRoutes().then(res => {
       this.positions = res;
+      this.changeDetectorRef.detectChanges();
     });
   }
 

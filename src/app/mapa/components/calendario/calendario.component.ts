@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 import { MapApiService } from '../../../core/services/map-api.service';
@@ -8,7 +8,8 @@ import * as moment from 'moment';
 @Component({
   selector: 'app-calendario',
   templateUrl: './calendario.component.html',
-  styleUrls: ['./calendario.component.scss']
+  styleUrls: ['./calendario.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CalendarioComponent implements OnInit {
 
@@ -24,6 +25,8 @@ export class CalendarioComponent implements OnInit {
   mapConfigDefault = {latitude: -15.799247, longitude: -47.860967, zoom: 3};
   mapConfig: { latitude: number, longitude: number, zoom: number } =  Object.assign({}, this.mapConfigDefault); // para iniciar centralizado no brasil
 
+  showAllMarkers: boolean = false;
+
   icons = {
     start: '../../../assets/images/maps-and-flags-start.png',
     end: '../../../assets/images/maps-and-flags-end.png',
@@ -33,6 +36,7 @@ export class CalendarioComponent implements OnInit {
 
   constructor(
       private mapApiService: MapApiService,
+      private changeDetectorRef: ChangeDetectorRef
   ) {
   }
 
@@ -51,23 +55,24 @@ export class CalendarioComponent implements OnInit {
     this.mapApiService.getHistory(dateTime).then(res => {
 
       this.positions = res;
-
       this.configMarker(false);
-
       this.positionFocus();
-
       this.status.isLoading  = false;
+      this.changeDetectorRef.detectChanges();
 
     }, ( ) => {
       this.status.isLoading = false;
       this.status.error = 'Não encontramos seu histórico para este dia.';
       this.positionFocus();
+      this.changeDetectorRef.detectChanges();
 
     });
 
   }
 
   configMarker(allMarkers) {
+    this.showAllMarkers = allMarkers;
+
     this.markers = [];
 
     const markers: Position[] = [];
@@ -117,15 +122,43 @@ export class CalendarioComponent implements OnInit {
     }
   }
 
-  formatHour(dateTime) {
+  private formatHour(dateTime) {
     return `${moment(dateTime).format('L')} ás ${moment(dateTime).format('LT')}`;
   }
 
   positionFocus() {
-    const middlePosition: any = this.positions[this.positions.length / 2] || this.mapConfigDefault;
+    const middlePosition: any = this.positions[this.positions.length - 1] || this.mapConfigDefault;
 
     this.mapConfig.latitude = middlePosition.latitude;
     this.mapConfig.longitude = middlePosition.longitude;
-    this.mapConfig.zoom = middlePosition.zoom || 13;
+
+    if (middlePosition.zoom) {
+      this.mapConfig.zoom = middlePosition.zoom;
+
+    } else {
+      const interval = setInterval(() => {
+        this.mapConfig.zoom += 0.2;
+        this.changeDetectorRef.detectChanges();
+
+        if (this.mapConfig.zoom >= 13) {
+          clearInterval(interval);
+        }
+      }, 25);
+
+    }
+  }
+
+  getInfoMarkerText(dateTime: string, index: number) {
+    const dateFromated = this.formatHour(dateTime);
+
+    let text = 'Você esteve aqui em ';
+    if (index === 0) {
+      text = 'Você saiu daqui em ';
+    } else if (index === this.markers.length - 1) {
+      text = 'Você chegou aqui em ';
+
+    }
+
+    return `${text}${dateFromated}.`;
   }
 }

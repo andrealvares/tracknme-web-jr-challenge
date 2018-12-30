@@ -7,9 +7,9 @@
 
         </agm-polyline>
 
-        <agm-marker *ngFor="let marker of markers" (markerClick)="onMouseOpen(marker, 'click')" (mouseOver)="onMouseOpen(marker, 'hover')" (mouseOut)="onMouseClose(marker, 'hover')" [latitude]="marker.latitude" [longitude]="marker.longitude" [iconUrl]="marker.icon">
+        <agm-marker *ngFor="let marker of markers; let i = index" (markerClick)="onMouseOpen(marker, 'click')" (mouseOver)="onMouseOpen(marker, 'hover')" (mouseOut)="onMouseClose(marker, 'hover')" [latitude]="marker.latitude" [longitude]="marker.longitude" [iconUrl]="marker.icon">
             <agm-info-window (infoWindowClose)="onMouseClose(marker, 'click')">
-                Você esteve aqui em {{ formatHour(marker.dateTime) }}.
+                {{ getInfoMarkerText(marker.dateTime, i) }}
             </agm-info-window>
         </agm-marker>
 
@@ -34,7 +34,7 @@
         </div>
 
         <div class="all-markers">
-            <button *ngIf="positions.length > 2" mat-stroked-button color="primary" (click)="configMarker(true)">Mostrar todos os pontos</button>
+            <button *ngIf="positions.length > 2" mat-stroked-button color="primary" (click)="configMarker(!showAllMarkers)">{{ showAllMarkers? 'Mostrar apenas Chegada e Saída': 'Mostrar todos os pontos' }}</button>
         </div>
     </div>
 
