@@ -1,0 +1,14 @@
+<agm-map [latitude]='lat' [longitude]='lng'>
+  <agm-direction *ngFor="let route of routesDay" [origin]="route.orig" [destination]="route.dest" [renderOptions]="dir.renderOptions"></agm-direction>
+
+</agm-map>
+
+
+<!--formularios usando o FormsModule-->
+<form class="form" #f="ngForm" (ngSubmit)="onSubmit(f)">  
+  <label>Data</label>
+  <input type="date" name="date" ngModel>
+  <input type="submit">
+</form>
+
+
