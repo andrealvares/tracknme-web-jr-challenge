@@ -1,0 +1,11 @@
+<div data-ng-map style="height:90%"
+    center="{{Home.trackCenter}}" zoom="14">
+    <directions ng-repeat="tack in Home.tracks"
+        draggable="true"
+        panel="directions-panel"
+        travel-mode="DRIVING"
+        waypoints="{{tack.paradas}}"
+        origin="{{tack.inicio}}"
+        destination="{{tack.fim}}">
+    </directions>
+</div>

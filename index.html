@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html data-ng-app="tracknme" lang="pt-br">
+    <head>
+        <title>Track'n ME - Desafio.</title>
+        <meta charset="utf-8">
+        <meta name="description" content="Track'n ME é um desafio!.">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">        
+        <link type="text/css" rel="stylesheet" href="node_modules/materialize-css/dist/css/materialize.min.css"  media="screen,projection"/>
+        <link type="text/css" rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css"  media="screen,projection"/>
+        <link type="text/css" rel="stylesheet" href="content/css/style.css" />        
+        <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0">
+    </head>
+    <body>
+        <nav class="blue" role="navigation">
+            <div class="nav-wrapper container">
+                <a href="#" id="logo-container" class="brand-logo">
+                    <span style="font-family: untitled-font-1" data-icon="&#xca;"></span>                    
+                    Track'n ME
+                </a>
+            </div>
+        </nav>                   
+        <div data-ng-view></div>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=COLE_AKI_SUA_KEY"></script>
+        <script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
+        <script type="text/javascript" src="node_modules/angular-route/angular-route.min.js"></script>                
+        <script type="text/javascript" src="node_modules/materialize-css/dist/js/materialize.min.js"></script>
+        <script type="text/javascript" src="node_modules/angular-materialize/src/angular-materialize.js"></script>                
+        <script type="text/javascript" src="node_modules/ngmap/build/scripts/ng-map.min.js"></script>   
+        <script type="text/javascript" src="node_modules/ngstorage/ngStorage.min.js"></script>   
+        <script type="text/javascript" src="node_modules/angular-resource/angular-resource.min.js"></script>   
+        <script type="text/javascript" src="app.js"></script>
+        <script type="text/javascript" src="services/PositionService.js"></script>
+        <script type="text/javascript" src="controllers/HomeController.js"></script
+    </body>
+</html>
