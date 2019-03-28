@@ -9,8 +9,7 @@ O desafio consiste em criar uma página web com as seguintes características:
 
 # Task 1 - Desenhar um trajeto no mapa
 
-Implementar uma página web cuja tela principal apresenta um mapa (google maps) e um trajeto obtido de uma api REST.
-Recomendamos que use o [Apiary](https://apiary.io) como API nessa etapa ou alguma similar de sua escolha.
+Implementar uma página web cuja tela principal apresenta um mapa (google maps) e um trajeto obtido de uma API REST. Você deve implementar um endpoint REST e disponibiliza-lo remotamente para que seja consumido pelo app.
 O app deve consultar a api REST e salvar o resultado (JSON) localmente (session/local storage).
 Após a consulta o app deve buscar na session/local storage os dados salvos da consulta na API e desenhar o trajeto obtido.
 
@@ -19,14 +18,14 @@ Exemplo de retorno da API:
 ``` json
 [ 
     {
-    	"dateTime": "2017-10-12T21:34:15",
-		"latitude": -23.962676666666667,
-		"longitude": -46.3884785
+        "dateTime": "2017-10-12T21:34:15",
+        "latitude": -23.9626767,
+        "longitude": -46.3884785
     },
     {
-    	"dateTime": "2017-10-12T21:40:15",
-		"latitude": -23.982676666666667,
-		"longitude": -46.4084785
+        "dateTime": "2017-10-12T21:40:15",
+        "latitude": -23.9826767,
+        "longitude": -46.4084785
     }
 ]
 ```
