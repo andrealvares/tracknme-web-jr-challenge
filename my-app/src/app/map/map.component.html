@@ -1,0 +1,14 @@
+<agm-map [latitude]='lat' [longitude]='lng'>
+    <agm-direction *ngIf="dir" [origin]="dir.orig" [destination]="dir.dest" [visible]="show"></agm-direction>
+</agm-map>
+
+
+<div class="topnav" mx-0>
+  <div class="col-4">
+        <a *ngFor="let route of routes" href="#" class="list-group-item list-group-item-action" (click)="selectedRoute(route)">Rota {{ route }}</a>
+  </div>
+</div>
+
+
+
+
