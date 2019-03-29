@@ -1,0 +1,32 @@
+{
+  "name": "tracknme-web-jr-challenge",
+  "version": "0.0.1",
+  "description": "Desafio",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GuilhermeSilvaCosta/tracknme-web-jr-challenge.git"
+  },
+  "author": "Guilherme Costa",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/GuilhermeSilvaCosta/tracknme-web-jr-challenge/issues"
+  },
+  "homepage": "https://github.com/GuilhermeSilvaCosta/tracknme-web-jr-challenge#readme",
+  "dependencies": {
+    "angular": "^1.7.8",
+    "angular-materialize": "^0.2.2",
+    "angular-resource": "^1.7.8",
+    "angular-route": "^1.7.8",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.3.1",
+    "materialize-css": "^1.0.0",
+    "ngmap": "^1.18.5",
+    "ngstorage": "^0.3.11"
+  }
+}
