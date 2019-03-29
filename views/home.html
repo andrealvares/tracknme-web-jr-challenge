@@ -1,11 +1,16 @@
-<div data-ng-map style="height:90%"
-    center="{{Home.trackCenter}}" zoom="14">
-    <directions ng-repeat="tack in Home.tracks"
-        draggable="true"
-        panel="directions-panel"
-        travel-mode="DRIVING"
-        waypoints="{{tack.paradas}}"
-        origin="{{tack.inicio}}"
-        destination="{{tack.fim}}">
-    </directions>
+<div class="row">
+    <date-picker bind-to="Home.dataFiltro" placeholder="Informe a data para o filtro Ex: 2019-03-29"></date-picker>
+    <button class="btn" data-ng-click="Home.filtrarPorData(Home.dataFiltro)">Filtrar</button>
+</div>
+<div class="row">
+    <div data-ng-map data-disable-default-u-i="true">
+        <directions ng-repeat="tack in Home.tracks"
+            draggable="true"
+            panel="directions-panel"
+            travel-mode="DRIVING"
+            waypoints="{{tack.paradas}}"
+            origin="{{tack.inicio}}"
+            destination="{{tack.fim}}">
+        </directions>
+    </div>
 </div>

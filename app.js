@@ -1,4 +1,4 @@
-angular.module('tracknme', ['ngRoute', 'ngMap', 'ui.materialize', 'ngStorage', 'ngResource']).config(config);
+angular.module('tracknme', ['ngRoute', 'ngMap', 'ui.materialize', 'ngStorage', 'ngResource', 'materialize']).config(config);
 
 function config($routeProvider, $locationProvider){
     $locationProvider.hashPrefix('');
