@@ -1,0 +1,36 @@
+#logo {
+    width: 30%;
+    height: 30%;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+header.masthead {
+    position: relative;
+    background-color: rgba(red, green, blue, alpha);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+  }
+
+  .call-to-action {
+    position: relative;
+    background-color: #343a40;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+  
+  .frase1 {
+      color: #FFEBCD;
+  }
+
+  .testimonials {
+    background-color: rgba(152, 168, 240);
+  }

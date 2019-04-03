@@ -1,0 +1,31 @@
+
+<nav class="container navbar navbar bg static-top">
+    <div id="challenge">
+      <h1>TrackNMe - Challenge</h1>
+    </div>
+</nav>
+
+<section class="features-icons bg-light text-center">
+  <div class="container">
+    <div class="row">
+        <agm-map [latitude]="lat" [longitude]="lng" >
+          <agm-direction  [renderOptions]="rota.renderOptions" [markerOptions]="rota.markerOptions" [waypoints]="rota.waypoints" [origin]="rota.origem" [destination]="rota.destino" [visible]="rota.show" *ngFor="let rota of rotas">
+          </agm-direction>
+        </agm-map>
+    </div>
+  </div>
+</section>
+
+<section class="showcase bg-light text-center" >
+    <div class="row justify-content-md-center">
+        <div >
+          <label  class="form-control" for="example-date-input">Data</label>
+        </div>
+        <div>
+          <input #data="ngModel" ngModel name="data" class="form-control" type="date" id="example-date-input">
+        </div>
+        <button type="button" (click)="OnSubmit(data.value)" class="btn btn-primary">Buscar</button>
+   
+    </div>
+</section>
+  
